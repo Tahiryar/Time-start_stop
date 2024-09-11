@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        #timer {
+            font-size: 48px; /* Increased font size for visibility */
+            text-align: center; /* Centered text */
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">Start</button>
+    <h1 id="timer">0</h1>
+
+    <script>
+        let count = 0;
+        let isRunning = false; // Variable to track whether the timer is running
+        let interval; // Variable to store the interval ID
+
+        document.querySelector('#btn').addEventListener('click', () => {
+            if (isRunning) {
+                count--;
+                clearInterval(interval); // Stop the timer
+                document.querySelector('#btn').innerHTML = "Start"; // Change button text to "Start"
+                
+                isRunning = false; // Update state to stopped
+            } else {
+                interval = setInterval(() => {
+                    count++; // Increment count every second
+                    document.querySelector('#timer').textContent = count; // Update timer display
+                }, 1000);
+                document.querySelector('#btn').innerHTML = "Stop"; // Change button text to "Stop"
+                
+                isRunning = true; // Update state to running
+            }
+        });
+    </script>
+</body>
+</html>
